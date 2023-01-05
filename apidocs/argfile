@@ -46,6 +46,7 @@
 'C:/Users/Mohab/OneDrive/Documents/GitHub/SHAFT_ENGINE/src/main/java/io/github/shafthq/shaft/listeners/CucumberFeatureListener.java'
 'C:/Users/Mohab/OneDrive/Documents/GitHub/SHAFT_ENGINE/src/main/java/io/github/shafthq/shaft/listeners/CucumberTestRunnerListener.java'
 'C:/Users/Mohab/OneDrive/Documents/GitHub/SHAFT_ENGINE/src/main/java/io/github/shafthq/shaft/listeners/helpers/ConfigurationHelper.java'
+'C:/Users/Mohab/OneDrive/Documents/GitHub/SHAFT_ENGINE/src/main/java/io/github/shafthq/shaft/listeners/helpers/CucumberHelper.java'
 'C:/Users/Mohab/OneDrive/Documents/GitHub/SHAFT_ENGINE/src/main/java/io/github/shafthq/shaft/listeners/helpers/JiraHelper.java'
 'C:/Users/Mohab/OneDrive/Documents/GitHub/SHAFT_ENGINE/src/main/java/io/github/shafthq/shaft/listeners/helpers/RetryAnalyzer.java'
 'C:/Users/Mohab/OneDrive/Documents/GitHub/SHAFT_ENGINE/src/main/java/io/github/shafthq/shaft/listeners/helpers/TestNGListenerHelper.java'
