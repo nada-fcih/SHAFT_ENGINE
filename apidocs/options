@@ -15,13 +15,13 @@
 -docencoding
 'UTF-8'
 -doctitle
-'SHAFT_Engine, 7.1.20230104'
+'SHAFT_Engine, 7.1.20230106'
 -footer
-'SHAFT_Engine, 7.1.20230104'
+'SHAFT_Engine, 7.1.20230106'
 -header
-'SHAFT_Engine, 7.1.20230104'
+'SHAFT_Engine, 7.1.20230106'
 -nohelp
 -use
 -version
 -windowtitle
-'io.github.shafthq:SHAFT_ENGINE 7.1.20230104 API'
+'io.github.shafthq:SHAFT_ENGINE 7.1.20230106 API'
