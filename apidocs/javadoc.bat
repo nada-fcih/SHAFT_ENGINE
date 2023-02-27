@@ -1,1 +1,1 @@
-cmd.exe /X /C ""C:\Program Files\Java\jdk-17.0.3.1\bin\javadoc.exe" @options @argfile"
+cmd.exe /X /C "C:\Users\Mohab\.jdks\openjdk-18.0.2.1\bin\javadoc.exe @options @argfile"

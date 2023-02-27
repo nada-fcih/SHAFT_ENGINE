@@ -9,10 +9,12 @@ com.shaft.gui.element
 com.shaft.tools.io
 com.shaft.validation
 io.github.shafthq.shaft.driver
+io.github.shafthq.shaft.driver.helpers
 io.github.shafthq.shaft.enums
 io.github.shafthq.shaft.gui.browser
 io.github.shafthq.shaft.gui.element
 io.github.shafthq.shaft.gui.image
+io.github.shafthq.shaft.gui.locator
 io.github.shafthq.shaft.gui.video
 io.github.shafthq.shaft.listeners
 io.github.shafthq.shaft.listeners.helpers
