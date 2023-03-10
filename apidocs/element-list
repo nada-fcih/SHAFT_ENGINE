@@ -9,7 +9,6 @@ com.shaft.gui.element
 com.shaft.tools.io
 com.shaft.validation
 io.github.shafthq.shaft.driver
-io.github.shafthq.shaft.driver.helpers
 io.github.shafthq.shaft.enums
 io.github.shafthq.shaft.gui.browser
 io.github.shafthq.shaft.gui.element
@@ -17,10 +16,9 @@ io.github.shafthq.shaft.gui.image
 io.github.shafthq.shaft.gui.locator
 io.github.shafthq.shaft.gui.video
 io.github.shafthq.shaft.listeners
-io.github.shafthq.shaft.listeners.helpers
 io.github.shafthq.shaft.properties
-io.github.shafthq.shaft.tools.io.helpers
+io.github.shafthq.shaft.tools.io
 io.github.shafthq.shaft.tools.security
 io.github.shafthq.shaft.tools.support
 io.github.shafthq.shaft.tools.tms
-io.github.shafthq.shaft.validations.helpers
+io.github.shafthq.shaft.validations
