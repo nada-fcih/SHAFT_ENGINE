@@ -4,7 +4,7 @@ com.shaft.cucumber
 com.shaft.db
 com.shaft.driver
 com.shaft.driver.internal
-com.shaft.dsl.gui
+com.shaft.driver.internal.DriverFactory
 com.shaft.enums.internal
 com.shaft.gui.browser
 com.shaft.gui.browser.internal
@@ -14,6 +14,7 @@ com.shaft.gui.internal.exceptions
 com.shaft.gui.internal.image
 com.shaft.gui.internal.locator
 com.shaft.gui.internal.video
+com.shaft.gui.waits
 com.shaft.listeners
 com.shaft.listeners.internal
 com.shaft.performance.internal
