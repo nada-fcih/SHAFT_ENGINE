@@ -186,6 +186,20 @@ public class ElementActions extends FluentWebDriverAction {
         return this;
     }
 
+    public ElementActions swipeFlutterElement(FlutterBy ScrollableElement, FlutterBy elementToScrollUntilVisible){
+        FlutterFinder finder = new FlutterFinder((RemoteWebDriver) driverFactoryHelper.getDriver());
+        ElementInformation elementInformation = ElementInformation.fromList(ScrollableElement.identifyFlutterElement(finder));
+        Map<String, Object> scrollParams = new HashMap<>();
+        scrollParams.put("item", elementInformation.getFirstElement());
+        scrollParams.put("dxScroll", 0); // Horizontal offset
+        scrollParams.put("dyScroll", 1000); // Vertical offset
+        scrollParams.put("waitTimeoutMilliseconds", 10000); // Timeout (10 seconds)
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor)driverFactoryHelper.getDriver();
+        javascriptExecutor.executeScript("flutter:scrollUntilVisible", elementToScrollUntilVisible.identifyFlutterElement(finder).get(1), scrollParams);
+
+        return this;
+    }
+
     /**
      * Waits for the element to be clickable, and then clicks and holds it.
      *

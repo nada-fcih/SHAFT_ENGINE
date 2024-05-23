@@ -17,8 +17,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-@SuppressWarnings("unused")
 @Beta
+@SuppressWarnings("unused")
 public abstract class FlutterBy extends By implements By.Remotable {
     private final FlutterFindingStrategy flutterFindingStrategy;
     @Getter
@@ -140,12 +140,12 @@ public abstract class FlutterBy extends By implements By.Remotable {
         return Collections.emptyList();
     }
 
-    private static ElementInformation createElementInformation(FlutterElement element, FlutterBy locator) {
+    private static List<Object> createElementInformation(FlutterElement element, FlutterBy locator) {
         ElementInformation elementInformation = new ElementInformation();
         elementInformation.setFirstElement(element);
         elementInformation.setLocator(locator);
         elementInformation.setElementName(JavaHelper.formatLocatorToString(locator));
-        return elementInformation;
+        return elementInformation.toList();
     }
 
     @Override
@@ -204,8 +204,7 @@ public abstract class FlutterBy extends By implements By.Remotable {
         }
 
         private List<Object> identifyElement(FlutterFinder finder, String text) {
-            ElementInformation elementInformation = createElementInformation(finder.byText(text), this);
-            return elementInformation.toList();
+            return createElementInformation(finder.byText(text), this);
         }
     }
 
@@ -221,11 +220,7 @@ public abstract class FlutterBy extends By implements By.Remotable {
         }
 
         private List<Object> identifyElement(FlutterFinder finder, String valueKey) {
-            ElementInformation elementInformation = new ElementInformation();
-            elementInformation.setFirstElement(finder.byValueKey(valueKey));
-            elementInformation.setLocator(this);
-            elementInformation.setElementName(JavaHelper.formatLocatorToString(this));
-            return elementInformation.toList();
+           return createElementInformation(finder.byValueKey(valueKey), this);
         }
     }
 
@@ -241,11 +236,7 @@ public abstract class FlutterBy extends By implements By.Remotable {
         }
 
         private List<Object> identifyElement(FlutterFinder finder, int valueKey) {
-            ElementInformation elementInformation = new ElementInformation();
-            elementInformation.setFirstElement(finder.byValueKey(valueKey));
-            elementInformation.setLocator(this);
-            elementInformation.setElementName(JavaHelper.formatLocatorToString(this));
-            return elementInformation.toList();
+           return createElementInformation(finder.byValueKey(valueKey), this);
         }
     }
 
@@ -261,11 +252,7 @@ public abstract class FlutterBy extends By implements By.Remotable {
         }
 
         private List<Object> identifyElement(FlutterFinder finder, String type) {
-            ElementInformation elementInformation = new ElementInformation();
-            elementInformation.setFirstElement(finder.byType(type));
-            elementInformation.setLocator(this);
-            elementInformation.setElementName(JavaHelper.formatLocatorToString(this));
-            return elementInformation.toList();
+            return createElementInformation(finder.byType(type), this);
         }
     }
 
@@ -287,12 +274,9 @@ public abstract class FlutterBy extends By implements By.Remotable {
         }
 
         private List<Object> identifyElement(FlutterFinder finder, FlutterBy of, FlutterBy matching, boolean matchRoot, boolean firstMatchOnly) {
-            ElementInformation elementInformation = new ElementInformation();
-            elementInformation.setFirstElement(finder.byDescendant((FlutterElement) of.identifyFlutterElement(finder).get(1),
-                    (FlutterElement) matching.identifyFlutterElement(finder).get(1), matchRoot, firstMatchOnly));
-            elementInformation.setLocator(this);
-            elementInformation.setElementName(JavaHelper.formatLocatorToString(this));
-            return elementInformation.toList();
+            return createElementInformation(finder.byDescendant((FlutterElement) of.identifyFlutterElement(finder).get(1),
+                    (FlutterElement) matching.identifyFlutterElement(finder).get(1),
+                    matchRoot, firstMatchOnly), this);
         }
     }
 
@@ -314,12 +298,9 @@ public abstract class FlutterBy extends By implements By.Remotable {
         }
 
         private List<Object> identifyElement(FlutterFinder finder, FlutterBy of, FlutterBy matching, boolean matchRoot, boolean firstMatchOnly) {
-            ElementInformation elementInformation = new ElementInformation();
-            elementInformation.setFirstElement(finder.byAncestor((FlutterElement) of.identifyFlutterElement(finder).get(1),
-                    (FlutterElement) matching.identifyFlutterElement(finder).get(1), matchRoot, firstMatchOnly));
-            elementInformation.setLocator(this);
-            elementInformation.setElementName(JavaHelper.formatLocatorToString(this));
-            return elementInformation.toList();
+            return createElementInformation(finder.byAncestor((FlutterElement) of.identifyFlutterElement(finder).get(1),
+                    (FlutterElement) matching.identifyFlutterElement(finder).get(1),
+                    matchRoot, firstMatchOnly), this);
         }
     }
 
