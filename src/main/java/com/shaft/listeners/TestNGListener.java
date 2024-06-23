@@ -1,5 +1,8 @@
 package com.shaft.listeners;
 
+import com.browserstack.BrowserStackJavaAgent;
+import com.browserstack.utils.UtilityMethods;
+import com.shaft.cli.FileActions;
 import com.shaft.driver.SHAFT;
 import com.shaft.gui.internal.image.ImageProcessingActions;
 import com.shaft.listeners.internal.*;
@@ -7,6 +10,7 @@ import com.shaft.properties.internal.PropertiesHelper;
 import com.shaft.tools.internal.security.GoogleTink;
 import com.shaft.tools.io.ReportManager;
 import com.shaft.tools.io.internal.*;
+import com.sun.tools.attach.VirtualMachine;
 import io.qameta.allure.Allure;
 import lombok.Getter;
 import org.testng.*;
@@ -14,6 +18,8 @@ import org.testng.annotations.ITestAnnotation;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
 
+import java.io.File;
+import java.lang.management.ManagementFactory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -80,6 +86,35 @@ public class TestNGListener implements IAlterSuiteListener, IAnnotationTransform
         Thread.ofVirtual().start(ReportManagerHelper::cleanExecutionSummaryReportDirectory);
         ReportManagerHelper.setDiscreteLogging(SHAFT.Properties.reporting.alwaysLogDiscreetly());
         ReportManagerHelper.setDebugMode(SHAFT.Properties.reporting.debugMode());
+        dynamicallyLoadExtraJavaAgents();
+    }
+
+    private static synchronized void dynamicallyLoadExtraJavaAgents() {
+
+        //browserstack agent
+        FileActions localFileSession = FileActions.getInstance(true);
+        if (localFileSession.doesFileExist("browserstack.yml")) {
+            UtilityMethods.setBrowserstackEnabled(true);
+            UtilityMethods.setBrowserStackYmlFile(new File("browserstack.yml"));
+            // need to inject BROWSERSTACK_PLUGIN_SDK_ENABLED env
+
+            var isEnabled = String.valueOf(System.getenv("BROWSERSTACK_PLUGIN_SDK_ENABLED"));
+
+            String agentFilePath = BrowserStackJavaAgent.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+            File agentFile = new File(agentFilePath);
+            String nameOfRunningVM = ManagementFactory.getRuntimeMXBean().getName();
+            String pid = nameOfRunningVM.substring(0, nameOfRunningVM.indexOf('@'));
+            try {
+                VirtualMachine vm = VirtualMachine.attach(pid);
+//                vm.loadAgentLibrary(agentFile.getAbsolutePath(), "");
+                vm.loadAgent(agentFile.getAbsolutePath());
+                isEnabled = String.valueOf(System.getenv("BROWSERSTACK_PLUGIN_SDK_ENABLED"));
+                System.out.println("Agent has been injected in running JVM running with process id " + pid);
+                vm.detach();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     /**

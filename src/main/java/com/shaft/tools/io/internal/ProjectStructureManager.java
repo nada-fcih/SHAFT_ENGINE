@@ -26,7 +26,7 @@ public class ProjectStructureManager {
                 }
                 case TESTNG -> {
                     FileActions.getInstance(true).createFolder(Properties.paths.services());
-                    FileActions.getInstance(true).writeToFile(Properties.paths.services(), "org.testng.ITestNGListener", "com.shaft.listeners.TestNGListener");
+                    FileActions.getInstance(true).writeToFile(Properties.paths.services(), "org.testng.ITestNGListener", "com.shaft.listeners.TestNGListener" + System.lineSeparator() + "com.browserstack.testNgListeners.BrowserstackSuiteListener");
                 }
                 case CUCUMBER -> {
                     FileActions.getInstance(true).createFolder(Properties.paths.services());

@@ -659,6 +659,12 @@
             <artifactId>progressbar</artifactId>
             <version>0.10.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.browserstack</groupId>
+            <artifactId>browserstack-java-sdk</artifactId>
+            <version>1.17.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -946,7 +952,8 @@
                             <trimStackTrace>false</trimStackTrace>
                             <useFile>false</useFile>
                             <argLine>
-                                @{argLine} ${surefireArgLine}
+                                -XX:+EnableDynamicAgentLoading -Djdk.attach.allowAttachSelf=true @{argLine}
+                                ${surefireArgLine}
                                 -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.22.1/aspectjweaver-1.9.22.1.jar"
                             </argLine>
                             <properties>
@@ -1001,7 +1008,8 @@
                             <trimStackTrace>false</trimStackTrace>
                             <useFile>false</useFile>
                             <argLine>
-                                @{argLine} ${surefireArgLine}
+                                -XX:+EnableDynamicAgentLoading -Djdk.attach.allowAttachSelf=true @{argLine}
+                                ${surefireArgLine}
                                 -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.22.1/aspectjweaver-1.9.22.1.jar"
                             </argLine>
                             <properties>
